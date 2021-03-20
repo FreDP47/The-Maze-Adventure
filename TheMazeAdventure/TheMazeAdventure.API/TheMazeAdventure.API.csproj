@@ -105,6 +105,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\UnityResolver.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\MazeIntegrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -121,7 +122,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheMazeAdventure.Core\TheMazeAdventure.Core.csproj">
+      <Project>{3fc32fe2-291d-444c-a342-32c4b7c97d5d}</Project>
+      <Name>TheMazeAdventure.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheMazeAdventure.Persistence\TheMazeAdventure.Persistence.csproj">
+      <Project>{C5C84854-EF72-409F-95F6-63C65479B886}</Project>
+      <Name>TheMazeAdventure.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheMazeAdventure.Services\TheMazeAdventure.Services.csproj">
+      <Project>{620CC1A4-06E7-4F9A-BC6A-7FBEA1285F7B}</Project>
+      <Name>TheMazeAdventure.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

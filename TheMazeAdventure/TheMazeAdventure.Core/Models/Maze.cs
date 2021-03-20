@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TheMazeAdventure.Core.Models
+﻿namespace TheMazeAdventure.Core.Models
 {
     public class Maze
     {
@@ -14,8 +8,8 @@ namespace TheMazeAdventure.Core.Models
             EntryPoint = entryPoint;
         }
 
-        private Room[,] Layout { get; }
-        private Room EntryPoint { get; }
+        public Room[,] Layout { get; }
+        public Room EntryPoint { get; }
         
     }
 }

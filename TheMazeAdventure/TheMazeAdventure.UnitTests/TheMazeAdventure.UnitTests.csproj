@@ -62,12 +62,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TheMazeAdventureServicesTests.cs" />
+    <Compile Include="MazeIntegrationTests\MazeIntegrationRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheMazeAdventure.Core\TheMazeAdventure.Core.csproj">
+      <Project>{3fc32fe2-291d-444c-a342-32c4b7c97d5d}</Project>
+      <Name>TheMazeAdventure.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheMazeAdventure.Persistence\TheMazeAdventure.Persistence.csproj">
+      <Project>{c5c84854-ef72-409f-95f6-63c65479b886}</Project>
+      <Name>TheMazeAdventure.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheMazeAdventure.Services\TheMazeAdventure.Services.csproj">
+      <Project>{620cc1a4-06e7-4f9a-bc6a-7fbea1285f7b}</Project>
+      <Name>TheMazeAdventure.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

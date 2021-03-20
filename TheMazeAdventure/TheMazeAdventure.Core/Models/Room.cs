@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TheMazeAdventure.Core.Models
+﻿namespace TheMazeAdventure.Core.Models
 {
     public class Room
     {
-        public Room(RoomType type)
+        public Room(RoomType type, int id, string description)
         {
+            Id = id;
             Type = type;
-            Description = type.Description;
+            Description = description;
         }
 
-        private RoomType Type { get; }
-        private string Description { get; }
+        public int Id { get; }
+        public RoomType Type { get; }
+        public string Description { get; }
     }
 }

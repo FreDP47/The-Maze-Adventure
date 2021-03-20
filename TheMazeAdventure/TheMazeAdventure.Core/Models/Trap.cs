@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TheMazeAdventure.Core.Models
+﻿namespace TheMazeAdventure.Core.Models
 {
     public class Trap
     {
@@ -15,8 +9,8 @@ namespace TheMazeAdventure.Core.Models
             ChanceOfInjuryInPercentage = chanceOfInjuryInPercentage;
         }
 
-        private string Name { get; }
-        private string TrapTriggerMessage { get; }
-        private int ChanceOfInjuryInPercentage { get; }
+        public string Name { get; }
+        public string TrapTriggerMessage { get; }
+        public int ChanceOfInjuryInPercentage { get; }
     }
 }
