@@ -1,9 +1,0 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs
-/TheMazeAdventure/.vs/TheMazeAdventure
-/TheMazeAdventure/TheMazeAdventure/bin
-/TheMazeAdventure/TheMazeAdventure/obj/Debug
-/TheMazeAdventure/packages
