@@ -5,20 +5,19 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using TheMazeAdventure.Core.API;
 using TheMazeAdventure.Core.Services;
 
 namespace TheMazeAdventure.API.Controllers
 {
-    public class MazeIntegrationController : ApiController, IMazeIntegration
+    public class MazeIntegrationController : ApiController
     {
-        private readonly IMazeIntegrationService _mazeIntegrationService;
-        public MazeIntegrationController(IMazeIntegrationService mazeIntegrationService)
+        private readonly IMazeService _mazeIntegrationService;
+        public MazeIntegrationController(IMazeService mazeIntegrationService)
         {
             _mazeIntegrationService = mazeIntegrationService;
         }
 
-        public async void BuildSquareMazeAsync(int size)
+        public async Task<IHttpActionResult> BuildSquareMazeAsync(int size)
         {
             throw new NotImplementedException();
         }

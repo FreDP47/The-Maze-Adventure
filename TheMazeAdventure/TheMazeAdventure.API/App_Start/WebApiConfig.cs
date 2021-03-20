@@ -1,6 +1,5 @@
 ﻿using System.Web.Http;
 using TheMazeAdventure.API.Controllers;
-using TheMazeAdventure.Core.API;
 using TheMazeAdventure.Core.Repositories;
 using TheMazeAdventure.Core.Services;
 using TheMazeAdventure.Persistence;
@@ -16,9 +15,8 @@ namespace TheMazeAdventure.API
         {
             // Web API configuration and services
             var container = new UnityContainer();
-            container.RegisterType<IMazeIntegrationRepository, MazeIntegrationRepository>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IMazeIntegrationService, MazeIntegrationService>(new TransientLifetimeManager());
-            container.RegisterType<IMazeIntegration, MazeIntegrationController>(new TransientLifetimeManager());
+            container.RegisterType<IMazeRepository, MazeInMemoryRepository>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IMazeService, MazeService>(new TransientLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
 
             // Web API routes

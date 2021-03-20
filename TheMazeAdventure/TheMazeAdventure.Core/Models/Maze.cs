@@ -2,14 +2,14 @@
 {
     public class Maze
     {
-        public Maze(Room[,] layout, Room entryPoint)
+        public Maze(Room[,] layout, string entryRoomId)
         {
             Layout = layout;
-            EntryPoint = entryPoint;
+            EntryRoomId = entryRoomId;
         }
 
         public Room[,] Layout { get; }
-        public Room EntryPoint { get; }
+        public string EntryRoomId { get; }
         
     }
 }
