@@ -5,4 +5,12 @@
 /TheMazeAdventure/.vs/TheMazeAdventure
 /TheMazeAdventure/packages
 /TheMazeAdventure/TheMazeAdventure.API/bin
-/TheMazeAdventure/TheMazeAdventure.API/obj/Debug
+/TheMazeAdventure/TheMazeAdventure.API/obj
+/TheMazeAdventure/TheMazeAdventure.Core/bin
+/TheMazeAdventure/TheMazeAdventure.Core/obj
+/TheMazeAdventure/TheMazeAdventure.Persistence/bin
+/TheMazeAdventure/TheMazeAdventure.Persistence/obj
+/TheMazeAdventure/TheMazeAdventure.Services/bin
+/TheMazeAdventure/TheMazeAdventure.Services/obj
+/TheMazeAdventure/TheMazeAdventure.UnitTests/bin
+/TheMazeAdventure/TheMazeAdventure.UnitTests/obj
