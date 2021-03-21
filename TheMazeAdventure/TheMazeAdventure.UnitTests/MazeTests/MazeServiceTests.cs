@@ -18,7 +18,6 @@ namespace TheMazeAdventure.UnitTests.MazeTests
         private readonly IMazeService _mazeService;
         private readonly Mock<IMazeRepository> _mockMazeRepo = new Mock<IMazeRepository>();
         private readonly Mock<IRoomTypeRepository> _mockRoomTyeRepo = new Mock<IRoomTypeRepository>();
-        private readonly Mock<ILogger<MazeService>> _mockLogger = new Mock<ILogger<MazeService>>();
 
         public MazeServiceTests()
         {

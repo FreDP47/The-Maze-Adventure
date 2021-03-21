@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using TheMazeAdventure.Core.Communication;
 using TheMazeAdventure.Core.Models;
 using TheMazeAdventure.Core.Repositories;
@@ -15,7 +13,6 @@ namespace TheMazeAdventure.Services
     {
         private readonly IMazeRepository _mazeRepository;
         private readonly IRoomTypeRepository _roomTypeRepository;
-        //private readonly ILogger<MazeService> _logger;
         private readonly Random _rnd;
         public MazeService(IMazeRepository mazeIntegrationRepository, IRoomTypeRepository roomTypeRepository)
         {
@@ -81,7 +78,6 @@ namespace TheMazeAdventure.Services
             }
             catch (Exception)
             {
-                //_logger.LogCritical(ex, "Some error occurred while building the maze {Time}", DateTime.Now);
                 return (null, null);
             }
         }
@@ -104,7 +100,6 @@ namespace TheMazeAdventure.Services
             }
             catch (Exception)
             {
-                //_logger.LogCritical(ex, "Some error occurred while setting the entrance room at {Time}", DateTime.Now);
                 return null;
             }
         }
@@ -117,7 +112,6 @@ namespace TheMazeAdventure.Services
             }
             catch (Exception ex)
             {
-                //_logger.LogCritical(ex, "Some error occurred at {Time}", DateTime.Now);
                 return new MazeResponse($"Some Error occurred while saving the maze: {ex.Message}");
             }
         }
