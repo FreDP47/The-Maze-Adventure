@@ -13,8 +13,8 @@ namespace TheMazeAdventure.UnitTests.MazeTests
         private readonly Maze _maze = new Maze(new[,]
         {
             {
-                new Room(new RoomType("Test Room 1"), 1, "Test Description", 0 , 0), 
-                new Room(new RoomType("Test Room 2"), 2, "Test Description", 0, 1)
+                new Room(new RoomType("Test Room 1"), 1, 0 , 0), 
+                new Room(new RoomType("Test Room 2"), 2, 0, 1)
             },
             {
                 new Room(
@@ -23,8 +23,8 @@ namespace TheMazeAdventure.UnitTests.MazeTests
                         Description = "Test Description",
                         BehaviourType = new Behaviour(false)
                             { TrapType = new Trap("Test trap", "Test trigger message", 40) }
-                    }, 3, "Test Description", 1, 0),
-                new Room(new RoomType("Test Room 4"), 4, "Test Description", 1, 1)
+                    }, 3, 1, 0),
+                new Room(new RoomType("Test Room 4"), 4, 1, 1)
             }
 
         }, 0);

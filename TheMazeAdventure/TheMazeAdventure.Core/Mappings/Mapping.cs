@@ -18,6 +18,9 @@ namespace TheMazeAdventure.Core.Mappings
                             dest.Name, opt => 
                             opt.MapFrom(src => src.Type.Name))
                         .ForMember(dest =>
+                            dest.Description, opt =>
+                            opt.MapFrom(src => src.Type.Description))
+                        .ForMember(dest =>
                             dest.TrapType, opt =>
                             opt.MapFrom(src => src.Type.BehaviourType.TrapType))
                         .ForMember(dest =>

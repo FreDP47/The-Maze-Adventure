@@ -46,7 +46,7 @@ namespace TheMazeAdventure.Services
                     {
                         var roomType =
                             listOfRoomTypesWithoutTreasureRoom[rnd.Next(listOfRoomTypesWithoutTreasureRoom.Length)];
-                        layoutArray[i, j] = new Room(roomType, id, roomType.Description, i, j);
+                        layoutArray[i, j] = new Room(roomType, id, i, j);
                         id++;
                     }
                 }
@@ -55,7 +55,7 @@ namespace TheMazeAdventure.Services
                 var emptyRoomType = listOfRoomTypes.FirstOrDefault(rType => rType.BehaviourType == null);
                 var entryRoomId = layoutArray[dimension.Row, dimension.Column].Id;
                 layoutArray[dimension.Row, dimension.Column] = new Room(emptyRoomType, entryRoomId,
-                    emptyRoomType.Description, dimension.Row, dimension.Column);
+                     dimension.Row, dimension.Column);
 
                 //Setting the treasure room
                 var treasureRoomType = listOfRoomTypes.FirstOrDefault(rType =>
@@ -69,8 +69,7 @@ namespace TheMazeAdventure.Services
                     for (var j = 0; j < size; j++)
                     {
                         if (layoutArray[i, j].Id != randomlyChooseTreasureRoomId) continue;
-                        layoutArray[i, j] = new Room(treasureRoomType, randomlyChooseTreasureRoomId,
-                            treasureRoomType.Description, i, j);
+                        layoutArray[i, j] = new Room(treasureRoomType, randomlyChooseTreasureRoomId, i, j);
                         isTreasureRoomSet = true;
                         break;
                     }

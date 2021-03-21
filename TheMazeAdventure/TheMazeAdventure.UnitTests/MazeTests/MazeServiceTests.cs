@@ -113,7 +113,7 @@ namespace TheMazeAdventure.UnitTests.MazeTests
         {
             //arrange
             const int id = 1;
-            var dummyResponse = new RoomResponse(new Room(new RoomType("Test type"), 1, "Test Description", 0 ,0));
+            var dummyResponse = new RoomResponse(new Room(new RoomType("Test type"), 1, 0 ,0));
             _mockMazeRepo.Setup(rep => rep.GetRoomByIdAsync(id)).ReturnsAsync(dummyResponse);
 
             //act
