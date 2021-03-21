@@ -10,40 +10,68 @@ namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
     public class MazeInMemoryRepositoryTests
     {
         private readonly IMazeRepository _mazeRepository;
+        private readonly Maze _maze = new Maze(new[,]
+        {
+            {
+                new Room(new RoomType("Test Room 1"), 1, "Test Description", 0 , 0), 
+                new Room(new RoomType("Test Room 2"), 2, "Test Description", 0, 1)
+            },
+            {
+                new Room(
+                    new RoomType("Test Room 3")
+                    {
+                        Description = "Test Description",
+                        BehaviourType = new Behaviour(false)
+                            { TrapType = new Trap("Test trap", "Test trigger message", 40) }
+                    }, 3, "Test Description", 1, 0),
+                new Room(new RoomType("Test Room 4"), 4, "Test Description", 1, 1)
+            }
+
+        }, 0);
 
         public MazeInMemoryRepositoryTests()
         {
             _mazeRepository = new MazeInMemoryRepository();
-            
+            _mazeRepository.SaveMazeAsync(_maze);
         }
 
         [TestMethod]
-        public async Task GetEntranceRoomId()
+        public void GetEntranceRoomId()
         {
             //arrange
             const int entryRoomId = 0;
-            var maze = new Maze(new[,]
-            {
-                {new Room(new RoomType("Test Room 1"), 0, "Test Description", 0 , 0), new Room(new RoomType("Test Room 2"), 1, "Test Description", 0, 1)},
-                {
-                    new Room(
-                        new RoomType("Test Room 3")
-                        {
-                            Description = "Test Description",
-                            BehaviourType = new Behaviour(false)
-                                {TrapType = new Trap("Test trap", "Test trigger message", 40)}
-                        }, 2, "Test Description", 1, 0),
-                    new Room(new RoomType("Test Room 4"), 2, "Test Description", 1, 1)
-                }
-
-            }, 0);
-            await _mazeRepository.SaveMazeAsync(maze);
 
             //act
             var entryRoomIdFromRepo = _mazeRepository.GetEntranceRoomId();
 
             //assert
             Assert.AreEqual(entryRoomId, entryRoomIdFromRepo);
+        }
+
+        [TestMethod]
+        public async Task GetRoomByIdAsync_WhenIdIsValid()
+        {
+            //arrange
+            const int id = 1;
+
+            //act
+            var result = await _mazeRepository.GetRoomByIdAsync(id);
+
+            //assert
+            Assert.IsNotNull(result.Room);
+        }
+
+        [TestMethod]
+        public async Task GetRoomByIdAsync_WhenIdIsNotValid()
+        {
+            //arrange
+            const int id = 0;
+
+            //act
+            var result = await _mazeRepository.GetRoomByIdAsync(id);
+
+            //assert
+            Assert.IsNull(result.Room);
         }
     }
 }

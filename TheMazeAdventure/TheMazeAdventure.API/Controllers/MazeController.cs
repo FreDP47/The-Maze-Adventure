@@ -8,7 +8,7 @@ using TheMazeAdventure.Core.Services;
 
 namespace TheMazeAdventure.API.Controllers
 {
-    [RoutePrefix("api/Maze")]
+    [RoutePrefix("api/maze")]
     public class MazeController : ApiController
     {
         private readonly IMapper _mapper;
@@ -40,6 +40,21 @@ namespace TheMazeAdventure.API.Controllers
                 return BadRequest(result.Message);
             var mazeResource = _mapper.Map<Maze, MazeResource>(result.Maze);
             return Ok(mazeResource);
+        }
+
+        [Route("room/{id:int}")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRoomByIdAsync(int id)
+        {
+            var result = await _mazeIntegrationService.GetRoomByIdAsync(id);
+
+            if(!result.Success)
+                return NotFound();
+            if (result.Room == null)
+                return NotFound();
+
+            var roomResource = _mapper.Map<Room, RoomResource>(result.Room);
+            return Ok(roomResource);
         }
     }
 }

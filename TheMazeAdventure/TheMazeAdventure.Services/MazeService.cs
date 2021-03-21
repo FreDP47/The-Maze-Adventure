@@ -114,13 +114,24 @@ namespace TheMazeAdventure.Services
         {
             try
             {
-                await _mazeRepository.SaveMazeAsync(maze);
-                return new MazeResponse(maze);
+                return await _mazeRepository.SaveMazeAsync(maze);
             }
             catch (Exception ex)
             {
                 //_logger.LogCritical(ex, "Some error occurred at {Time}", DateTime.Now);
                 return new MazeResponse($"Some Error occurred while saving the maze: {ex.Message}");
+            }
+        }
+
+        public async Task<RoomResponse> GetRoomByIdAsync(int roomId)
+        {
+            try
+            {
+                return await _mazeRepository.GetRoomByIdAsync(roomId);
+            }
+            catch (Exception ex)
+            {
+                return new RoomResponse($"Some Error occurred while saving the maze: {ex.Message}");
             }
         }
 

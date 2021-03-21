@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using TheMazeAdventure.Core.Communication;
 using TheMazeAdventure.Core.Models;
 
 namespace TheMazeAdventure.Core.Repositories
@@ -12,12 +13,14 @@ namespace TheMazeAdventure.Core.Repositories
         /// Saves the maze.
         /// </summary>
         /// <param name="maze">maze</param>
-        Task SaveMazeAsync(Maze maze);
+        Task<MazeResponse> SaveMazeAsync(Maze maze);
 
         /// <summary>
         /// Gets the ID Entrance room of the maze
         /// </summary>
         /// <returns></returns>
         int GetEntranceRoomId();
+
+        Task<RoomResponse> GetRoomByIdAsync(int roomId);
     }
 }

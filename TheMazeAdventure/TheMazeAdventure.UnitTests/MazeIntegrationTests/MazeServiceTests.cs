@@ -8,6 +8,7 @@ using TheMazeAdventure.Core.Repositories;
 using TheMazeAdventure.Core.Services;
 using TheMazeAdventure.Services;
 using Microsoft.Extensions.Logging;
+using TheMazeAdventure.Core.Communication;
 using TheMazeAdventure.Core.Models;
 
 namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
@@ -106,6 +107,36 @@ namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
 
             //assert
             Assert.IsNotNull(entryRoomDimension);
+        }
+
+        [TestMethod]
+        public async Task GetRoomByIdAsync_WhenIdIsValid()
+        {
+            //arrange
+            const int id = 1;
+            var dummyResponse = new RoomResponse(new Room(new RoomType("Test type"), 1, "Test Description", 0 ,0));
+            _mockMazeRepo.Setup(rep => rep.GetRoomByIdAsync(id)).ReturnsAsync(dummyResponse);
+
+            //act
+            var result = await _mazeService.GetRoomByIdAsync(id);
+
+            //assert
+            Assert.IsNotNull(result.Room);
+        }
+
+        [TestMethod]
+        public async Task GetRoomByIdAsync_WhenIdIsInvalid()
+        {
+            //arrange
+            const int id = 0;
+            var dummyResponse = new RoomResponse((Room) null);
+            _mockMazeRepo.Setup(rep => rep.GetRoomByIdAsync(id)).ReturnsAsync(dummyResponse);
+
+            //act
+            var result = await _mazeService.GetRoomByIdAsync(id);
+
+            //assert
+            Assert.IsNull(result.Room);
         }
     }
 }

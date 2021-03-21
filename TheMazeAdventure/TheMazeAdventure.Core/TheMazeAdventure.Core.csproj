@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Communication\BaseResponse.cs" />
     <Compile Include="Communication\MazeResponse.cs" />
+    <Compile Include="Communication\RoomResponse.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Models\Behaviour.cs" />
     <Compile Include="Models\Dimension.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Repositories\IMazeRepository.cs" />
     <Compile Include="Repositories\IRoomTypeRepository.cs" />
     <Compile Include="Resources\MazeResource.cs" />
+    <Compile Include="Resources\RoomResource.cs" />
     <Compile Include="Services\IMazeService.cs" />
   </ItemGroup>
   <ItemGroup>

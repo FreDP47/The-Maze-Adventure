@@ -32,5 +32,12 @@ namespace TheMazeAdventure.Core.Services
         /// </summary>
         /// <param name="maze">maze</param>
         Task<MazeResponse> SaveMazeAsync(Maze maze);
+
+        /// <summary>
+        /// Fetches the room by its id
+        /// </summary>
+        /// <param name="roomId">ID fo the room</param>
+        /// <returns></returns>
+        Task<RoomResponse> GetRoomByIdAsync(int roomId);
     }
 }
