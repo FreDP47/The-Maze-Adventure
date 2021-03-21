@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AtlasCopco.Integration.Maze;
+﻿using AtlasCopco.Integration.Maze;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TheMazeAdventure.MazeIntegration;
 
@@ -20,7 +15,12 @@ namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
         [TestMethod]
         public void MazeIntegrationTest()
         {
-            //_mazeIntegration.BuildMazeAsync(3);
+            _mazeIntegration.BuildMazeAsync(3);
+            for (var i = 1; i < 10; i++)
+            {
+                _mazeIntegration.CausesInjury(i);
+            }
+            //_mazeIntegration.HasTreasure(1);
             //var entryRoomID = _mazeIntegration.GetEntranceRoom();
             //_mazeIntegration.
         }

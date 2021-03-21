@@ -21,7 +21,7 @@ namespace TheMazeAdventure.Core.Mappings
                             dest.TrapType, opt =>
                             opt.MapFrom(src => src.Type.BehaviourType.TrapType))
                         .ForMember(dest =>
-                            dest.isTreasureRoom, opt =>
+                            dest.IsTreasureRoom, opt =>
                             opt.MapFrom(src => src.Type.BehaviourType.IsTreasureThere));
                 });
         }

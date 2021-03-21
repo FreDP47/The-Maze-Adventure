@@ -31,7 +31,7 @@
         /// <param name="roomId">ID of a room.</param>
         /// <returns>Textual room description.</returns>
         string GetDescription(int roomId);
-        
+
         /// <summary>
         /// Checks whether a room has a treasure.
         /// </summary>

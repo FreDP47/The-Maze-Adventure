@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,20 +45,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MazeIntegration.cs" />
+    <Compile Include="Models\IMazeIntegration.cs" />
+    <Compile Include="Models\MazeIntegrationMazeResource.cs" />
+    <Compile Include="Models\MazeIntegrationRoomResource.cs" />
+    <Compile Include="Models\MazeIntegrationTrapResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheMazeAdventure.Core\TheMazeAdventure.Core.csproj">
-      <Project>{3FC32FE2-291D-444C-A342-32C4B7C97D5D}</Project>
-      <Name>TheMazeAdventure.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheMazeAdventure.Utility\TheMazeAdventure.Utility.csproj">
-      <Project>{71f315fd-7b5e-40cf-aebd-65c629f510fc}</Project>
-      <Name>TheMazeAdventure.Utility</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

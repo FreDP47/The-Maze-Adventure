@@ -77,7 +77,6 @@
     <Compile Include="Communication\MazeResponse.cs" />
     <Compile Include="Communication\RoomResponse.cs" />
     <Compile Include="Mappings\Mapping.cs" />
-    <Compile Include="MazeIntegration\IMazeIntegration.cs" />
     <Compile Include="Models\Behaviour.cs" />
     <Compile Include="Models\Dimension.cs" />
     <Compile Include="Models\Maze.cs" />

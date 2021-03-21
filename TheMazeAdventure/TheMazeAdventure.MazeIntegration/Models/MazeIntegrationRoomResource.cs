@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TheMazeAdventure.Core.Models;
 
-namespace TheMazeAdventure.Core.Resources
+namespace TheMazeAdventure.MazeIntegration.Models
 {
-    public class RoomResource
+    public class MazeIntegrationRoomResource
     {
         public int Id { get; set; }
         public int Row { get; set; }
@@ -15,6 +14,6 @@ namespace TheMazeAdventure.Core.Resources
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsTreasureRoom { get; set; }
-        public Trap TrapType { get; set; }
+        public MazeIntegrationTrapResource TrapType { get; set; }
     }
 }

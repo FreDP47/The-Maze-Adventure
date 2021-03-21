@@ -2,8 +2,8 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using AtlasCopco.Integration.Maze;
-using TheMazeAdventure.Core.Resources;
-using TheMazeAdventure.Utility;
+using Newtonsoft.Json;
+using TheMazeAdventure.MazeIntegration.Models;
 
 namespace TheMazeAdventure.MazeIntegration
 {
@@ -15,18 +15,22 @@ namespace TheMazeAdventure.MazeIntegration
         private static int _size;
         private readonly Random _rnd;
 
+        private const string ApiBaseAddress = "https://localhost:44351/";
+        private const string BuildMazeRelativePath = "api/maze/{0}";
+        private const string GetRoomByIdRelativePath = "api/maze/room/{0}";
+
         public MazeIntegration()
         {
-            Client = new HttpClient { BaseAddress = new Uri(Constants.ApiBaseAddress) };
+            Client = new HttpClient { BaseAddress = new Uri(ApiBaseAddress) };
             _rnd = new Random();
         }
 
-        public async void BuildMazeAsync(int size)
+        public void BuildMazeAsync(int size)
         {
             _size = size;
-            var response = await Client.PutAsync(string.Format(Constants.BuildMazeRelativePath, size), new StringContent(null));
+            var response = Client.PutAsync(string.Format(BuildMazeRelativePath, size), null).Result;
             if (!response.IsSuccessStatusCode) return;
-            var mazeResource = await Methods.DeserializeHttpResponse<MazeResource>(response);
+            var mazeResource = DeserializeHttpResponse<MazeIntegrationMazeResource>(response).Result;
             _entryRoomId = mazeResource.EntryRoomId;
         }
 
@@ -37,16 +41,17 @@ namespace TheMazeAdventure.MazeIntegration
 
         public int? GetRoom(int roomId, char direction)
         {
+            var room = GetRoom(roomId).Result;
             switch (direction)
             {
                 case 'N':
-                    return GetRoom(roomId - _size).Result?.Id;
+                    return room.Row == 0 ? null : GetRoom(roomId - _size).Result?.Id;
                 case 'S':
-                    return GetRoom(roomId + _size).Result?.Id;
+                    return room.Row == _size - 1 ? null : GetRoom(roomId + _size).Result?.Id;
                 case 'E':
-                    return GetRoom(roomId + 1).Result?.Id;
+                    return room.Column == _size - 1 ? null : GetRoom(roomId + 1).Result?.Id;
                 case 'W':
-                    return GetRoom(roomId - 1).Result?.Id;
+                    return room.Column == 0 ? null : GetRoom(roomId - 1).Result?.Id;
                 default:
                     return null;
             }
@@ -63,7 +68,7 @@ namespace TheMazeAdventure.MazeIntegration
         public bool HasTreasure(int roomId)
         {
             var room = GetRoom(roomId).Result;
-            return room.isTreasureRoom;
+            return room.IsTreasureRoom;
         }
 
         public bool CausesInjury(int roomId)
@@ -75,12 +80,17 @@ namespace TheMazeAdventure.MazeIntegration
             return generateInjury <= room.TrapType.ChanceOfInjuryInPercentage;
         }
 
-        private async Task<RoomResource> GetRoom(int id)
+        private async Task<MazeIntegrationRoomResource> GetRoom(int id)
         {
-            var response = await Client.GetAsync(string.Format(Constants.GetRoomByIdRelativePath, id));
+            var response = await Client.GetAsync(string.Format(GetRoomByIdRelativePath, id));
             return !response.IsSuccessStatusCode
                 ? null
-                : await Methods.DeserializeHttpResponse<RoomResource>(response);
+                : await DeserializeHttpResponse<MazeIntegrationRoomResource>(response);
+        }
+
+        private static async Task<T> DeserializeHttpResponse<T>(HttpResponseMessage response)
+        {
+            return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
         }
     }
 }

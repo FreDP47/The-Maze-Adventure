@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using TheMazeAdventure.Core.Models;
 using TheMazeAdventure.Core.Repositories;
@@ -30,7 +27,7 @@ namespace TheMazeAdventure.Persistence
                     TrapType = 
                         new Trap
                         (
-                        "marshes", " But you immediately begin to sink", 30
+                        "marshes", " But you immediately begin to sink", 50
                         )
                 }
             },
@@ -42,7 +39,7 @@ namespace TheMazeAdventure.Persistence
                     TrapType =
                         new Trap
                         (
-                            "marshes", " But you immediately begin to dehydrate", 20
+                            "marshes", " But you immediately begin to dehydrate", 40
                         )
                 }
             }
