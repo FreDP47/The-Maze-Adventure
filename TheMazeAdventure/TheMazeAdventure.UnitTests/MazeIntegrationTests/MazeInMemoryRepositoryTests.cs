@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TheMazeAdventure.Core.Models;
 using TheMazeAdventure.Core.Repositories;
 using TheMazeAdventure.Persistence;
@@ -10,33 +10,34 @@ namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
     public class MazeInMemoryRepositoryTests
     {
         private readonly IMazeRepository _mazeRepository;
-        private readonly Maze _maze = new Maze(new[,]
-        {
-            {new Room(new RoomType("Test Room 1"), 00, "Test Description"), new Room(new RoomType("Test Room 2"), 01, "Test Description")},
-            {
-                new Room(
-                    new RoomType("Test Room 3")
-                    {
-                        Description = "Test Description",
-                        BehaviourType = new Behaviour(false)
-                            {TrapType = new Trap("Test trap", "Test trigger message", 40)}
-                    }, 10, "Test Description"),
-                new Room(new RoomType("Test Room 4"), 11, "Test Description")
-            }
-
-        }, "00");
 
         public MazeInMemoryRepositoryTests()
         {
             _mazeRepository = new MazeInMemoryRepository();
-            _mazeRepository.SaveMaze(_maze);
+            
         }
 
         [TestMethod]
-        public void GetEntranceRoomId()
+        public async Task GetEntranceRoomId()
         {
             //arrange
-            const string entryRoomId = "00";
+            const long entryRoomId = 0;
+            var maze = new Maze(new[,]
+            {
+                {new Room(new RoomType("Test Room 1"), 0, "Test Description", 0 , 0), new Room(new RoomType("Test Room 2"), 1, "Test Description", 0, 1)},
+                {
+                    new Room(
+                        new RoomType("Test Room 3")
+                        {
+                            Description = "Test Description",
+                            BehaviourType = new Behaviour(false)
+                                {TrapType = new Trap("Test trap", "Test trigger message", 40)}
+                        }, 2, "Test Description", 1, 0),
+                    new Room(new RoomType("Test Room 4"), 2, "Test Description", 1, 1)
+                }
+
+            }, 0);
+            await _mazeRepository.SaveMazeAsync(maze);
 
             //act
             var entryRoomIdFromRepo = _mazeRepository.GetEntranceRoomId();

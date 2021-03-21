@@ -12,12 +12,12 @@ namespace TheMazeAdventure.Core.Repositories
         /// Saves the maze.
         /// </summary>
         /// <param name="maze">maze</param>
-        void SaveMaze(Maze maze);
+        Task SaveMazeAsync(Maze maze);
 
         /// <summary>
         /// Gets the ID Entrance room of the maze
         /// </summary>
         /// <returns></returns>
-        string GetEntranceRoomId();
+        long GetEntranceRoomId();
     }
 }

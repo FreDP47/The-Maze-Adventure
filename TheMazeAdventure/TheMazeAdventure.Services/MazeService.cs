@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using TheMazeAdventure.Core.Communication;
 using TheMazeAdventure.Core.Models;
 using TheMazeAdventure.Core.Repositories;
 using TheMazeAdventure.Core.Services;
@@ -9,34 +11,51 @@ namespace TheMazeAdventure.Services
     public class MazeService: IMazeService
     {
         private readonly IMazeRepository _mazeRepository;
-        public MazeService(IMazeRepository mazeIntegrationRepository)
+        private readonly ILogger<MazeService> _logger;
+        public MazeService(IMazeRepository mazeIntegrationRepository, ILogger<MazeService> logger)
         {
             _mazeRepository = mazeIntegrationRepository;
+            _logger = logger;
         }
 
         public Task<Room[,]> BuildMazeLayoutAsync(int size)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "Some error occurred while building the maze {Time}", DateTime.Now);
+                return null;
+            }
         }
 
-        public string SetEntranceRoom(int size)
+        public int? SetEntranceRoom(int size)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "Some error occurred while setting the entrance room at {Time}", DateTime.Now);
+                return null;
+            }
         }
 
-        public void SaveMaze(Maze maze)
+        public async Task<MazeResponse> SaveMaze(Maze maze)
         {
-            _mazeRepository.SaveMaze(maze);
-        }
-
-        public string GetEntranceRoomId()
-        {
-            return _mazeRepository.GetEntranceRoomId();
-        }
-
-        public Task<Room[,]> BuildMazeLayout(int size)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                await _mazeRepository.SaveMazeAsync(maze);
+                return new MazeResponse(maze);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "Some error occurred at {Time}", DateTime.Now);
+                return new MazeResponse($"Some Error occurred while saving the maze: {ex.Message}");
+            }
         }
     }
 }

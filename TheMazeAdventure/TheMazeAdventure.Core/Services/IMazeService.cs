@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheMazeAdventure.Core.Communication;
 using TheMazeAdventure.Core.Models;
 
 namespace TheMazeAdventure.Core.Services
@@ -22,18 +23,12 @@ namespace TheMazeAdventure.Core.Services
         /// Randomly generates and returns the ID entrance room of the maze.
         /// </summary>
         /// <param name="size">Width and height of maze dimensions.</param>
-        string SetEntranceRoom(int size);
+        int? SetEntranceRoom(int size);
 
         /// <summary>
         /// Saves the maze
         /// </summary>
         /// <param name="maze">maze</param>
-        void SaveMaze(Maze maze);
-
-        /// <summary>
-        /// Gets the ID of the entrance room for the built maze.
-        /// </summary>
-        /// <returns>ID of the entrance room.</returns>
-        string GetEntranceRoomId();
+        Task<MazeResponse> SaveMaze(Maze maze);
     }
 }

@@ -10,12 +10,12 @@ namespace TheMazeAdventure.Persistence
     {
         private static Maze _maze;
 
-        public void SaveMaze(Maze maze)
+        public Task SaveMazeAsync(Maze maze)
         {
-            _maze = maze;
+            return Task.Run(() => { _maze = maze; });
         }
 
-        public string GetEntranceRoomId()
+        public long GetEntranceRoomId()
         {
             return _maze.EntryRoomId;
         }

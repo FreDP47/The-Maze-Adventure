@@ -2,14 +2,13 @@
 {
     public class Maze
     {
-        public Maze(Room[,] layout, string entryRoomId)
+        public Maze(Room[,] layout, long entryRoomId)
         {
             Layout = layout;
             EntryRoomId = entryRoomId;
         }
 
         public Room[,] Layout { get; }
-        public string EntryRoomId { get; }
-        
+        public long EntryRoomId { get; }
     }
 }

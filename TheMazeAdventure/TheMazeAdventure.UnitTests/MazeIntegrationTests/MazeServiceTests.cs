@@ -1,11 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using TheMazeAdventure.Core.Models;
 using TheMazeAdventure.Core.Repositories;
 using TheMazeAdventure.Core.Services;
 using TheMazeAdventure.Services;
+using Microsoft.Extensions.Logging;
 
 namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
 {
@@ -14,10 +13,11 @@ namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
     {
         private readonly IMazeService _mazeService;
         private readonly Mock<IMazeRepository> _mockRepo = new Mock<IMazeRepository>();
+        private readonly Mock<ILogger<MazeService>> _mockLogger = new Mock<ILogger<MazeService>>();
 
         public MazeServiceTests()
         {
-            _mazeService = new MazeService(_mockRepo.Object);
+            _mazeService = new MazeService(_mockRepo.Object, _mockLogger.Object);
         }
 
         [TestMethod]
