@@ -15,7 +15,7 @@ namespace TheMazeAdventure.Persistence
             return Task.Run(() => { _maze = maze; });
         }
 
-        public long GetEntranceRoomId()
+        public int GetEntranceRoomId()
         {
             return _maze.EntryRoomId;
         }

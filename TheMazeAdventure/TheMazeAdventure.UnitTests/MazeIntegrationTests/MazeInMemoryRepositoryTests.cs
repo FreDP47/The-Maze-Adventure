@@ -21,7 +21,7 @@ namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
         public async Task GetEntranceRoomId()
         {
             //arrange
-            const long entryRoomId = 0;
+            const int entryRoomId = 0;
             var maze = new Maze(new[,]
             {
                 {new Room(new RoomType("Test Room 1"), 0, "Test Description", 0 , 0), new Room(new RoomType("Test Room 2"), 1, "Test Description", 0, 1)},

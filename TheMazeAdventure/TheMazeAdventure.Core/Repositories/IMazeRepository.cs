@@ -18,6 +18,6 @@ namespace TheMazeAdventure.Core.Repositories
         /// Gets the ID Entrance room of the maze
         /// </summary>
         /// <returns></returns>
-        long GetEntranceRoomId();
+        int GetEntranceRoomId();
     }
 }

@@ -77,12 +77,14 @@
     <Compile Include="Communication\MazeResponse.cs" />
     <Compile Include="Mappings\ModelToResourceProfile.cs" />
     <Compile Include="Models\Behaviour.cs" />
+    <Compile Include="Models\Dimension.cs" />
     <Compile Include="Models\Maze.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomType.cs" />
     <Compile Include="Models\Trap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IMazeRepository.cs" />
+    <Compile Include="Repositories\IRoomTypeRepository.cs" />
     <Compile Include="Resources\MazeResource.cs" />
     <Compile Include="Services\IMazeService.cs" />
   </ItemGroup>
