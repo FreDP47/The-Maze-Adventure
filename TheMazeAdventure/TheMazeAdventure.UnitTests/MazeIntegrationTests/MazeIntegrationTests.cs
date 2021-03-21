@@ -15,7 +15,7 @@ namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
         [TestMethod]
         public void MazeIntegrationTest()
         {
-            _mazeIntegration.BuildMazeAsync(3);
+            _mazeIntegration.BuildMaze(3);
             for (var i = 1; i < 10; i++)
             {
                 _mazeIntegration.CausesInjury(i);

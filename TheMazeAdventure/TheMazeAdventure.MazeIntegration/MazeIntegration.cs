@@ -25,7 +25,7 @@ namespace TheMazeAdventure.MazeIntegration
             _rnd = new Random();
         }
 
-        public void BuildMazeAsync(int size)
+        public void BuildMaze(int size)
         {
             _size = size;
             var response = Client.PutAsync(string.Format(BuildMazeRelativePath, size), null).Result;
@@ -41,17 +41,17 @@ namespace TheMazeAdventure.MazeIntegration
 
         public int? GetRoom(int roomId, char direction)
         {
-            var room = GetRoom(roomId).Result;
+            var room = GetRoomyId(roomId).Result;
             switch (direction)
             {
                 case 'N':
-                    return room.Row == 0 ? null : GetRoom(roomId - _size).Result?.Id;
+                    return room.Row == 0 ? null : GetRoomyId(roomId - _size).Result?.Id;
                 case 'S':
-                    return room.Row == _size - 1 ? null : GetRoom(roomId + _size).Result?.Id;
+                    return room.Row == _size - 1 ? null : GetRoomyId(roomId + _size).Result?.Id;
                 case 'E':
-                    return room.Column == _size - 1 ? null : GetRoom(roomId + 1).Result?.Id;
+                    return room.Column == _size - 1 ? null : GetRoomyId(roomId + 1).Result?.Id;
                 case 'W':
-                    return room.Column == 0 ? null : GetRoom(roomId - 1).Result?.Id;
+                    return room.Column == 0 ? null : GetRoomyId(roomId - 1).Result?.Id;
                 default:
                     return null;
             }
@@ -59,7 +59,7 @@ namespace TheMazeAdventure.MazeIntegration
 
         public string GetDescription(int roomId)
         {
-            var room = GetRoom(roomId).Result;
+            var room = GetRoomyId(roomId).Result;
             return CausesInjury(roomId)
                 ? string.Concat(room.Description, room.TrapType.TrapTriggerMessage)
                 : room.Description;
@@ -67,20 +67,20 @@ namespace TheMazeAdventure.MazeIntegration
 
         public bool HasTreasure(int roomId)
         {
-            var room = GetRoom(roomId).Result;
+            var room = GetRoomyId(roomId).Result;
             return room.IsTreasureRoom;
         }
 
         public bool CausesInjury(int roomId)
         {
-            var room = GetRoom(roomId).Result;
+            var room = GetRoomyId(roomId).Result;
             if (room.TrapType == null)
                 return false;
-            var generateInjury = _rnd.Next(1, 101);
-            return generateInjury <= room.TrapType.ChanceOfInjuryInPercentage;
+            var triggerBehaviour = _rnd.Next(1, 101);
+            return triggerBehaviour <= room.TrapType.ChanceOfInjuryInPercentage;
         }
 
-        private async Task<MazeIntegrationRoomResource> GetRoom(int id)
+        private async Task<MazeIntegrationRoomResource> GetRoomyId(int id)
         {
             var response = await Client.GetAsync(string.Format(GetRoomByIdRelativePath, id));
             return !response.IsSuccessStatusCode
