@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using TheMazeAdventure.Core.Communication;
+using TheMazeAdventure.Core.Models;
 using TheMazeAdventure.Core.Repositories;
 using TheMazeAdventure.Core.Services;
 using TheMazeAdventure.Services;
-using Microsoft.Extensions.Logging;
-using TheMazeAdventure.Core.Communication;
-using TheMazeAdventure.Core.Models;
 
-namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
+namespace TheMazeAdventure.UnitTests.MazeTests
 {
     [TestClass]
     public class MazeServiceTests

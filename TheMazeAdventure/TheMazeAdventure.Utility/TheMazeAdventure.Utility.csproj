@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6E148E8D-2E26-4221-A87F-D251274BF147}</ProjectGuid>
+    <ProjectGuid>{71F315FD-7B5E-40CF-AEBD-65C629F510FC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TheMazeAdventure.MazeIntegration</RootNamespace>
-    <AssemblyName>TheMazeAdventure.MazeIntegration</AssemblyName>
+    <RootNamespace>TheMazeAdventure.Utility</RootNamespace>
+    <AssemblyName>TheMazeAdventure.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,21 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MazeIntegration.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Methods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheMazeAdventure.Core\TheMazeAdventure.Core.csproj">
-      <Project>{3FC32FE2-291D-444C-A342-32C4B7C97D5D}</Project>
-      <Name>TheMazeAdventure.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheMazeAdventure.Utility\TheMazeAdventure.Utility.csproj">
-      <Project>{71f315fd-7b5e-40cf-aebd-65c629f510fc}</Project>
-      <Name>TheMazeAdventure.Utility</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

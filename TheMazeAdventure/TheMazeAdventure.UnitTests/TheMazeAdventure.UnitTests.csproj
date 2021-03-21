@@ -99,8 +99,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MazeIntegrationTests\MazeInMemoryRepositoryTests.cs" />
-    <Compile Include="MazeIntegrationTests\MazeServiceTests.cs" />
+    <Compile Include="MazeIntegrationTests\MazeIntegrationTests.cs" />
+    <Compile Include="MazeTests\MazeInMemoryRepositoryTests.cs" />
+    <Compile Include="MazeTests\MazeServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +112,10 @@
     <ProjectReference Include="..\TheMazeAdventure.Core\TheMazeAdventure.Core.csproj">
       <Project>{3fc32fe2-291d-444c-a342-32c4b7c97d5d}</Project>
       <Name>TheMazeAdventure.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheMazeAdventure.MazeIntegration\TheMazeAdventure.MazeIntegration.csproj">
+      <Project>{6E148E8D-2E26-4221-A87F-D251274BF147}</Project>
+      <Name>TheMazeAdventure.MazeIntegration</Name>
     </ProjectReference>
     <ProjectReference Include="..\TheMazeAdventure.Persistence\TheMazeAdventure.Persistence.csproj">
       <Project>{c5c84854-ef72-409f-95f6-63c65479b886}</Project>

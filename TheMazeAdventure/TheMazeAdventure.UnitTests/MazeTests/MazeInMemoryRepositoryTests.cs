@@ -4,7 +4,7 @@ using TheMazeAdventure.Core.Models;
 using TheMazeAdventure.Core.Repositories;
 using TheMazeAdventure.Persistence;
 
-namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
+namespace TheMazeAdventure.UnitTests.MazeTests
 {
     [TestClass]
     public class MazeInMemoryRepositoryTests
