@@ -75,7 +75,7 @@
   <ItemGroup>
     <Compile Include="Communication\BaseResponse.cs" />
     <Compile Include="Communication\MazeResponse.cs" />
-    <Compile Include="Mappings\ModelToResourceProfile.cs" />
+    <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Models\Behaviour.cs" />
     <Compile Include="Models\Dimension.cs" />
     <Compile Include="Models\Maze.cs" />

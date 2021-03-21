@@ -15,14 +15,12 @@ namespace TheMazeAdventure.Services
     {
         private readonly IMazeRepository _mazeRepository;
         private readonly IRoomTypeRepository _roomTypeRepository;
-        private readonly ILogger<MazeService> _logger;
+        //private readonly ILogger<MazeService> _logger;
         private readonly Random _rnd;
-        public MazeService(IMazeRepository mazeIntegrationRepository, IRoomTypeRepository roomTypeRepository,
-            ILogger<MazeService> logger)
+        public MazeService(IMazeRepository mazeIntegrationRepository, IRoomTypeRepository roomTypeRepository)
         {
             _mazeRepository = mazeIntegrationRepository;
             _roomTypeRepository = roomTypeRepository;
-            _logger = logger;
             _rnd = new Random();
         }
 
@@ -82,9 +80,9 @@ namespace TheMazeAdventure.Services
 
                 return (layoutArray, entryRoomId);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogCritical(ex, "Some error occurred while building the maze {Time}", DateTime.Now);
+                //_logger.LogCritical(ex, "Some error occurred while building the maze {Time}", DateTime.Now);
                 return (null, null);
             }
         }
@@ -105,9 +103,9 @@ namespace TheMazeAdventure.Services
                 return Task.Run(() => new Dimension(row, column));
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogCritical(ex, "Some error occurred while setting the entrance room at {Time}", DateTime.Now);
+                //_logger.LogCritical(ex, "Some error occurred while setting the entrance room at {Time}", DateTime.Now);
                 return null;
             }
         }
@@ -121,7 +119,7 @@ namespace TheMazeAdventure.Services
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex, "Some error occurred at {Time}", DateTime.Now);
+                //_logger.LogCritical(ex, "Some error occurred at {Time}", DateTime.Now);
                 return new MazeResponse($"Some Error occurred while saving the maze: {ex.Message}");
             }
         }

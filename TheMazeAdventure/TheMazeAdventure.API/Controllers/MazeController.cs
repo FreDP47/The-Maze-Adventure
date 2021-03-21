@@ -8,11 +8,11 @@ using TheMazeAdventure.Core.Services;
 
 namespace TheMazeAdventure.API.Controllers
 {
-    [RoutePrefix("api/[controller]")]
+    [RoutePrefix("api/Maze")]
     public class MazeController : ApiController
     {
-        private readonly IMazeService _mazeIntegrationService;
         private readonly IMapper _mapper;
+        private readonly IMazeService _mazeIntegrationService;
         public MazeController(IMazeService mazeIntegrationService, IMapper mapper)
         {
             _mazeIntegrationService = mazeIntegrationService;

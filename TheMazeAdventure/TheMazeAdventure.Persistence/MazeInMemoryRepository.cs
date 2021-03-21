@@ -8,6 +8,7 @@ namespace TheMazeAdventure.Persistence
 {
     public class MazeInMemoryRepository : IMazeRepository
     {
+        public MazeInMemoryRepository() { }
         private static Maze _maze;
 
         public Task SaveMazeAsync(Maze maze)

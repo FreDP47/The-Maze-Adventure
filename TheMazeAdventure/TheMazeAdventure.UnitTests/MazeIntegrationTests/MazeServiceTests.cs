@@ -22,7 +22,7 @@ namespace TheMazeAdventure.UnitTests.MazeIntegrationTests
 
         public MazeServiceTests()
         {
-            _mazeService = new MazeService(_mockMazeRepo.Object, _mockRoomTyeRepo.Object, _mockLogger.Object);
+            _mazeService = new MazeService(_mockMazeRepo.Object, _mockRoomTyeRepo.Object);
         }
 
         [TestMethod]
