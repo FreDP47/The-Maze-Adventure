@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheMazeAdventure.Persistenc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheMazeAdventure.UnitTests", "TheMazeAdventure.UnitTests\TheMazeAdventure.UnitTests.csproj", "{18102CA9-C129-4DA3-9C6A-DA512B312E67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheMazeAdventure.MazeIntegration", "TheMazeAdventure.MazeIntegration\TheMazeAdventure.MazeIntegration.csproj", "{6E148E8D-2E26-4221-A87F-D251274BF147}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{18102CA9-C129-4DA3-9C6A-DA512B312E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18102CA9-C129-4DA3-9C6A-DA512B312E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18102CA9-C129-4DA3-9C6A-DA512B312E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E148E8D-2E26-4221-A87F-D251274BF147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E148E8D-2E26-4221-A87F-D251274BF147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E148E8D-2E26-4221-A87F-D251274BF147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E148E8D-2E26-4221-A87F-D251274BF147}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
