@@ -30,56 +30,25 @@ namespace TheMazeAdventure.Services
                 var enumerableListOfRoomTypes = await _roomTypeRepository.GetAllRoomTypesAsync();
                 var listOfRoomTypes = enumerableListOfRoomTypes.ToList();
 
+                //build the layout with rooms types other than treasure room
                 //creating a list of all room types excluding the treasure room type to fill the initial layout
                 var listOfRoomTypesWithoutTreasureRoom =
                     listOfRoomTypes.Where(rType =>
                         (rType.BehaviourType != null && !rType.BehaviourType.IsTreasureThere) ||
                         rType.BehaviourType == null).ToArray();
-
-                //build the layout with rooms types other than treasure room
-                var id = 1;
-                for (var i = 0; i < size; i++)
-                {
-                    for (var j = 0; j < size; j++)
-                    {
-                        var roomType =
-                            listOfRoomTypesWithoutTreasureRoom[_rnd.Next(listOfRoomTypesWithoutTreasureRoom.Length)];
-                        layoutArray[i, j] = new Room(roomType, id, i, j);
-                        id++;
-                    }
-                }
+                CreateInitialLayout(listOfRoomTypesWithoutTreasureRoom, size, ref layoutArray);
 
                 //use the row and column of the entry room passed as parameters to find the entry room cell from the 
                 //layout and then replace it with an empty room and use the id of the initial room for the new 
                 //room as well
-                var emptyRoomType = listOfRoomTypes.FirstOrDefault(rType => rType.BehaviourType == null);
-                var entryRoomId = layoutArray[dimension.Row, dimension.Column].Id;
-                layoutArray[dimension.Row, dimension.Column] = new Room(emptyRoomType, entryRoomId,
-                     dimension.Row, dimension.Column);
+                SetupStartRoom(listOfRoomTypes.FirstOrDefault(rType => rType.BehaviourType == null), dimension,
+                    ref layoutArray);
 
-                //Setting the treasure room
+                //set the treasure room
+                var entryRoomId = layoutArray[dimension.Row, dimension.Column].Id;
                 var treasureRoomType = listOfRoomTypes.FirstOrDefault(rType =>
                     rType.BehaviourType != null && rType.BehaviourType.IsTreasureThere);
-                //list of possible room id values excluding the entry room id
-                var possibleTreasureRoomIdValues = Enumerable.Range(1, size * size).ToList();
-                possibleTreasureRoomIdValues.Remove(entryRoomId);
-                //finding the cell in the layout whose id matches with the randomly generated id from
-                //the possible treasure room id values and replacing it with the treasure room using
-                //the id of the initial room present there
-                var isTreasureRoomSet = false;
-                var randomlyChooseTreasureRoomId = GenerateRandomNumberFromListOfNumbers(possibleTreasureRoomIdValues);
-                for (var i = 0; i < size; i++)
-                {
-                    for (var j = 0; j < size; j++)
-                    {
-                        if (layoutArray[i, j].Id != randomlyChooseTreasureRoomId) continue;
-                        layoutArray[i, j] = new Room(treasureRoomType, randomlyChooseTreasureRoomId, i, j);
-                        isTreasureRoomSet = true;
-                        break;
-                    }
-                    if(isTreasureRoomSet)
-                        break;
-                }
+                SetupTreasureRoom(treasureRoomType, size, entryRoomId, ref layoutArray);
 
                 return (layoutArray, entryRoomId);
             }
@@ -136,6 +105,51 @@ namespace TheMazeAdventure.Services
             catch (Exception ex)
             {
                 return new RoomResponse($"Some Error occurred while saving the maze: {ex.Message}");
+            }
+        }
+
+        private void CreateInitialLayout(IReadOnlyList<RoomType> roomTypes, int size, ref Room[,] layoutArray)
+        {
+            var id = 1;
+            for (var i = 0; i < size; i++)
+            {
+                for (var j = 0; j < size; j++)
+                {
+                    var roomType = roomTypes[_rnd.Next(roomTypes.Count)];
+                    layoutArray[i, j] = new Room(roomType, id, i, j);
+                    id++;
+                }
+            }
+        }
+
+        private void SetupStartRoom(RoomType emptyRoomType, Dimension dimension, ref Room[,] layoutArray)
+        {
+            var entryRoomId = layoutArray[dimension.Row, dimension.Column].Id;
+            layoutArray[dimension.Row, dimension.Column] = new Room(emptyRoomType, entryRoomId,
+                dimension.Row, dimension.Column);
+        }
+
+        private void SetupTreasureRoom(RoomType treasureRoomType, int size, int entryRoomId, ref Room[,] layoutArray)
+        {
+            //list of possible room id values excluding the entry room id
+            var possibleTreasureRoomIdValues = Enumerable.Range(1, size * size).ToList();
+            possibleTreasureRoomIdValues.Remove(entryRoomId);
+            //finding the cell in the layout whose id matches with the randomly generated id from
+            //the possible treasure room id values and replacing it with the treasure room using
+            //the id of the initial room present there
+            var isTreasureRoomSet = false;
+            var randomlyChooseTreasureRoomId = GenerateRandomNumberFromListOfNumbers(possibleTreasureRoomIdValues);
+            for (var i = 0; i < size; i++)
+            {
+                for (var j = 0; j < size; j++)
+                {
+                    if (layoutArray[i, j].Id != randomlyChooseTreasureRoomId) continue;
+                    layoutArray[i, j] = new Room(treasureRoomType, randomlyChooseTreasureRoomId, i, j);
+                    isTreasureRoomSet = true;
+                    break;
+                }
+                if (isTreasureRoomSet)
+                    break;
             }
         }
 
