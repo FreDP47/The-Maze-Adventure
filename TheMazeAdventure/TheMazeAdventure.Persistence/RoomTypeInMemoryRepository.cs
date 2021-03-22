@@ -27,7 +27,7 @@ namespace TheMazeAdventure.Persistence
                     TrapType = 
                         new Trap
                         (
-                        "marshes", " But you immediately begin to sink", 50
+                        "marshes", " But you immediately begin to sink", 30
                         )
                 }
             },
@@ -39,7 +39,7 @@ namespace TheMazeAdventure.Persistence
                     TrapType =
                         new Trap
                         (
-                            "marshes", " But you immediately begin to dehydrate", 40
+                            "marshes", " But you immediately begin to dehydrate", 20
                         )
                 }
             }
