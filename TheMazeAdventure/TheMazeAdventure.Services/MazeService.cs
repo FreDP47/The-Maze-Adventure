@@ -41,12 +41,12 @@ namespace TheMazeAdventure.Services
                 //use the row and column of the entry room passed as parameters to find the entry room cell from the 
                 //layout and then replace it with an empty room and use the id of the initial room for the new 
                 //room as well
-                SetupStartRoom(listOfRoomTypes.FirstOrDefault(rType => rType.BehaviourType == null), dimension,
+                SetupStartRoom(listOfRoomTypes.Find(rType => rType.BehaviourType == null), dimension,
                     ref layoutArray);
 
                 //set the treasure room
                 var entryRoomId = layoutArray[dimension.Row, dimension.Column].Id;
-                var treasureRoomType = listOfRoomTypes.FirstOrDefault(rType =>
+                var treasureRoomType = listOfRoomTypes.Find(rType =>
                     rType.BehaviourType != null && rType.BehaviourType.IsTreasureThere);
                 SetupTreasureRoom(treasureRoomType, size, entryRoomId, ref layoutArray);
 
