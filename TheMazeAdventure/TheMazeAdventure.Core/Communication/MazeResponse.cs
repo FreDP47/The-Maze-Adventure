@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheMazeAdventure.Core.Models;
+﻿using TheMazeAdventure.Core.Models;
 
 namespace TheMazeAdventure.Core.Communication
 {
     public class MazeResponse: BaseResponse
     {
-        public Maze Maze { get; set; }
+        public Maze Maze { get; }
 
         private MazeResponse(bool success, string message, Maze maze) : base(success, message)
         {

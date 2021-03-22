@@ -5,7 +5,7 @@ using TheMazeAdventure.Core.Models;
 namespace TheMazeAdventure.Core.Repositories
 {
     /// <summary>
-    /// Used for updating or getting the maze details which is stored in memory.
+    /// Used for updating or getting the maze details.
     /// </summary>
     public interface IMazeRepository
     {
@@ -21,6 +21,11 @@ namespace TheMazeAdventure.Core.Repositories
         /// <returns></returns>
         int GetEntranceRoomId();
 
+        /// <summary>
+        /// Gets the room by it's ID
+        /// </summary>
+        /// <param name="roomId">ID of room</param>
+        /// <returns></returns>
         Task<RoomResponse> GetRoomByIdAsync(int roomId);
     }
 }

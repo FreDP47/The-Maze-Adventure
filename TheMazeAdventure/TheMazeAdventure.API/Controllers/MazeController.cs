@@ -19,6 +19,11 @@ namespace TheMazeAdventure.API.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Builds a standard square maze using the size parameter
+        /// </summary>
+        /// <param name="size">length and breadth of array</param>
+        /// <returns>entry room id of the built maze</returns>
         [Route("{size:int}")]
         [HttpPut]
         public async Task<IHttpActionResult> BuildSquareMazeAsync(int size)
@@ -42,6 +47,11 @@ namespace TheMazeAdventure.API.Controllers
             return Ok(mazeResource);
         }
 
+        /// <summary>
+        /// Gets the room by it's id
+        /// </summary>
+        /// <param name="id">ID of the room</param>
+        /// <returns>room</returns>
         [Route("room/{id:int}")]
         [HttpGet]
         public async Task<IHttpActionResult> GetRoomByIdAsync(int id)

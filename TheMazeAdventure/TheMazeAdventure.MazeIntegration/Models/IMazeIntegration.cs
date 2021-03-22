@@ -1,4 +1,4 @@
-﻿namespace AtlasCopco.Integration.Maze
+﻿namespace TheMazeAdventure.MazeIntegration.Models
 {
     /// <summary>
     /// Used for integrating with external Treasure Adventure Emulators.

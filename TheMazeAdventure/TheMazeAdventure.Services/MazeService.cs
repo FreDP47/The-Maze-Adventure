@@ -27,28 +27,31 @@ namespace TheMazeAdventure.Services
             {
                 if (size <= 1) return (null, null);
                 var layoutArray = new Room[size, size];
-                var rnd = new Random();
                 var enumerableListOfRoomTypes = await _roomTypeRepository.GetAllRoomTypesAsync();
                 var listOfRoomTypes = enumerableListOfRoomTypes.ToList();
+
+                //creating a list of all room types excluding the treasure room type to fill the initial layout
                 var listOfRoomTypesWithoutTreasureRoom =
                     listOfRoomTypes.Where(rType =>
                         (rType.BehaviourType != null && !rType.BehaviourType.IsTreasureThere) ||
                         rType.BehaviourType == null).ToArray();
 
-                //Build the layout with rooms types other than treasure room
+                //build the layout with rooms types other than treasure room
                 var id = 1;
                 for (var i = 0; i < size; i++)
                 {
                     for (var j = 0; j < size; j++)
                     {
                         var roomType =
-                            listOfRoomTypesWithoutTreasureRoom[rnd.Next(listOfRoomTypesWithoutTreasureRoom.Length)];
+                            listOfRoomTypesWithoutTreasureRoom[_rnd.Next(listOfRoomTypesWithoutTreasureRoom.Length)];
                         layoutArray[i, j] = new Room(roomType, id, i, j);
                         id++;
                     }
                 }
 
-                //Setting the entrance room
+                //use the row and column of the entry room passed as parameters to find the entry room cell from the 
+                //layout and then replace it with an empty room and use the id of the initial room for the new 
+                //room as well
                 var emptyRoomType = listOfRoomTypes.FirstOrDefault(rType => rType.BehaviourType == null);
                 var entryRoomId = layoutArray[dimension.Row, dimension.Column].Id;
                 layoutArray[dimension.Row, dimension.Column] = new Room(emptyRoomType, entryRoomId,
@@ -57,10 +60,14 @@ namespace TheMazeAdventure.Services
                 //Setting the treasure room
                 var treasureRoomType = listOfRoomTypes.FirstOrDefault(rType =>
                     rType.BehaviourType != null && rType.BehaviourType.IsTreasureThere);
-                var possibleValues = Enumerable.Range(1, size * size);
-
+                //list of possible room id values excluding the entry room id
+                var possibleTreasureRoomIdValues = Enumerable.Range(1, size * size).ToList();
+                possibleTreasureRoomIdValues.Remove(entryRoomId);
+                //finding the cell in the layout whose id matches with the randomly generated id from
+                //the possible treasure room id values and replacing it with the treasure room using
+                //the id of the initial room present there
                 var isTreasureRoomSet = false;
-                var randomlyChooseTreasureRoomId = GenerateRandomNumberFromListOfNumbers(possibleValues);
+                var randomlyChooseTreasureRoomId = GenerateRandomNumberFromListOfNumbers(possibleTreasureRoomIdValues);
                 for (var i = 0; i < size; i++)
                 {
                     for (var j = 0; j < size; j++)
@@ -87,16 +94,20 @@ namespace TheMazeAdventure.Services
             try
             {
                 if (size <= 1) return null;
+                //List of values b/w 0 and the size(exclusive) of the array
                 var possibleValues = Enumerable.Range(0, size).ToList();
+                //Set of 2 values - 0 and the size of the array
                 var possibleEdgeValues = new List<int>() {0, size - 1};
 
                 var row = GenerateRandomNumberFromListOfNumbers(possibleValues);
+                //if generated row is at the edge of the maze then choose any column
+                //if generated row is any value b/w 0 and size of array of the maze
+                //then choose the column from one of the edges
                 var column = possibleEdgeValues.Contains(row)
                     ? GenerateRandomNumberFromListOfNumbers(possibleValues)
                     : GenerateRandomNumberFromListOfNumbers(possibleEdgeValues);
 
                 return Task.Run(() => new Dimension(row, column));
-
             }
             catch (Exception)
             {

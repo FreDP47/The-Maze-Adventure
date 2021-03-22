@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TheMazeAdventure.Core.Communication;
 using TheMazeAdventure.Core.Models;
 using TheMazeAdventure.Core.Repositories;
@@ -9,7 +7,6 @@ namespace TheMazeAdventure.Persistence
 {
     public class MazeInMemoryRepository : IMazeRepository
     {
-        public MazeInMemoryRepository() { }
         private static Maze _maze;
 
         public async Task<MazeResponse> SaveMazeAsync(Maze maze)

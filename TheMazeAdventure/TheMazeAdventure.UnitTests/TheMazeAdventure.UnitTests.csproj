@@ -99,7 +99,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MazeIntegrationTests\MazeIntegrationTests.cs" />
     <Compile Include="MazeTests\MazeInMemoryRepositoryTests.cs" />
     <Compile Include="MazeTests\MazeServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
